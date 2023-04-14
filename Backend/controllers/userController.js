@@ -12,13 +12,12 @@ export const userRegister = ('/', asyncHandler(async(req, res) =>{
     const {name, age, style, role, image, phone} = req.body
  console.log(req.body)
    
-    if (image && image.length===0) {
+    if ( image.length===0) {
         image.push('https://i.ibb.co/Yy0FdfH/player.png')
         const user = new User({
              
-            name,
+           name,
            image,
-           imagePublicId:[],
            age,
            style,
            role,
@@ -31,11 +30,10 @@ export const userRegister = ('/', asyncHandler(async(req, res) =>{
        const userAddDone= await user.save()
        if (userAddDone) {
              res.json(userAddDone)
-             return
+             
             }
-      }
-
-
+      }else{
+        
       let uploadedImage=[]
       let uploadedImagePublicId=[]
 
@@ -81,6 +79,9 @@ export const userRegister = ('/', asyncHandler(async(req, res) =>{
           console.log(error);
           throw new Error('problem with image upload');
          }
+      }
+
+
         
         }))
         

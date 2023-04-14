@@ -10,14 +10,14 @@ import jwt from 'jsonwebtoken'
 
 export const userRegister = ('/', asyncHandler(async(req, res) =>{
     const {name, age, style, role, image, phone} = req.body
- console.log(req.body)
+ console.log(req.body.image.length)
    
     if ( image.length===0) {
-        image.push('https://i.ibb.co/Yy0FdfH/player.png')
+        // image.push('https://i.ibb.co/Yy0FdfH/player.png')
         const user = new User({
              
            name,
-           image,
+           image:['https://i.ibb.co/Yy0FdfH/player.png'],
            age,
            style,
            role,

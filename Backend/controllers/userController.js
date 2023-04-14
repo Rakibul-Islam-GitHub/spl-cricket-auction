@@ -10,7 +10,7 @@ import jwt from 'jsonwebtoken'
 
 export const userRegister = ('/', asyncHandler(async(req, res) =>{
     const {name, age, style, role, image, phone} = req.body
- console.log(req.body.image.length)
+
    
     if ( image.length===0) {
         // image.push('https://i.ibb.co/Yy0FdfH/player.png')
@@ -224,8 +224,13 @@ export const updateMyProfile = ('/profile/update', asyncHandler(async(req, res) 
 /// api/user/roleupdate
 
 export const userUpdate = ('/update/:id', asyncHandler(async(req, res) =>{
- const {name, category, description} = req.body
-    const user= await User.findOneAndUpdate({_id:req.params.id}, {name, category, description, approved:true} )
+ const {name, category, description} = req.body.creds
+// console.log(req.body)
+    const user= await User.findOneAndUpdate({_id:req.params.id}, {
+        "$set":{
+            'name':name, 'category': category, 'description': description, 'approved':true
+        }
+       } )
    
     if (user) {
         res.json({success: true})

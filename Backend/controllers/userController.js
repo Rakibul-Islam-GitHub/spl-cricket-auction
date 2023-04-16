@@ -200,6 +200,30 @@ export const getApprovedUsers = ('/approvedusers', asyncHandler(async(req, res) 
         throw new Error('User not found')
     }
 }))
+export const getAuctionplayers = ('/auctionplayer', asyncHandler(async(req, res) =>{
+
+    const users= await User.find({
+        $and:[{
+            approved: true,
+            $or: [
+                {category:'A' },
+                {category:'B'},
+                {category:'C'},
+                {category:'Icon'},
+        ]
+        }],
+       
+
+    })
+  
+    if (users) {
+       
+        res.json(users)
+    }else{
+        res.status(404)
+        throw new Error('User not found')
+    }
+}))
 
 
 /// logged in user profile update

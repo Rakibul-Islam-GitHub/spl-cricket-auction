@@ -1,11 +1,12 @@
 import express from 'express';
 const router = express.Router();
-import {userAuth,getUser,getProfileById,updateMyProfile, userRegister,getUsersList, userUpdate, getApprovedUsers, deleteuser} from '../controllers/userController.js'
+import {userAuth,getUser,getProfileById,updateMyProfile, userRegister,getUsersList, userUpdate, getApprovedUsers, deleteuser, getAuctionplayers} from '../controllers/userController.js'
 import { protect } from '../middleware/authMiddleware.js';
 
 router.post('/', userRegister);
 router.route('/').get( getUsersList )
 router.route('/approvedusers').get( getApprovedUsers )
+router.route('/auctionplayer').get( getAuctionplayers )
 router.route('/profile').get( protect ,getUser )
 router.route('/update/:id').put( protect ,userUpdate )
 router.route('/delete/:id').delete( deleteuser )

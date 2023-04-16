@@ -1,16 +1,17 @@
 import asyncHandler from 'express-async-handler'
-import Auction from '../Models/leagueModel.js'
+import Auction from '../Models/auctionModel.js'
 
 export const createAuction= ('/add', asyncHandler(async (req, res)=>{
-    const {
+    let {
       playerid,
       playername,
       category,
       soldprice,
       team
     } = req.body;
-    
-    const Auction = new Auction({
+    playername.trim()
+    soldprice= Number(soldprice)
+    const auction = new Auction({
        
       playerid,
       playername,
@@ -21,7 +22,7 @@ export const createAuction= ('/add', asyncHandler(async (req, res)=>{
         
       })
   
-    const leagueDone= await Auction.save()
+    const leagueDone= await auction.save()
 
     if (leagueDone) {
         res.json(leagueDone)

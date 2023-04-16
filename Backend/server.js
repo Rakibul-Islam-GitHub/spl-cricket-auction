@@ -4,6 +4,7 @@ import connectDB from './DatabaseConnect/connectDB.js'
 import caseRoutes from './routes/caseRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import leagueRoutes from './routes/leagueRoutes.js'
+import auctionRoutes from './routes/auctionRoutes.js'
 import tournamentRoutes from './routes/tournamentRoutes.js'
 import registeredplayerRoutes from './routes/registeredplayerRoutes.js'
 import { errorHandler, notFound } from './middleware/errorMiddleware.js'
@@ -54,6 +55,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/api/user',upload.single("image"),  userRoutes)
+app.use('/api/auction',  auctionRoutes)
 app.use('/api/league', leagueRoutes)
 app.use('/api/tournament', tournamentRoutes)
 app.use('/api/registeredplayer', registeredplayerRoutes)

@@ -70,14 +70,17 @@ export const getAuctions = ('/', asyncHandler(async (req, res)=>{
 // /// delete Auction 
 // /// private route
 // /// api/Auction/delete/:id
-// export const deleteLeague =
-//   ("/delete/:id",
-//   asyncHandler(async (req, res) => {
-//     const Auction = await Auction.deleteOne({_id:req.params.id});
-//     if (Auction) {
-//       res.json({success: true, message:'Auction deleted successfully'});
-//     } else {
-//       res.status(404);
-//       throw new Error("Auction Not Found...");
-//     }
-//   }));
+
+
+
+export const deleteAuctions =
+  ("/delete",
+  asyncHandler(async (req, res) => {
+    const auction = await Auction.deleteMany({});
+    if (auction) {
+      res.json({success: true, message:'Auction deleted successfully'});
+    } else {
+      res.status(404);
+      throw new Error("Auction Not Found...");
+    }
+  }));

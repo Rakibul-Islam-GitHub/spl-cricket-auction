@@ -1,11 +1,12 @@
 import express from 'express';
 const router = express.Router();
 
-import { createAuction, getAuctions } from '../controllers/auctionController.js';
+import { createAuction, deleteAuctions, getAuctions } from '../controllers/auctionController.js';
 
 
 router.route('/add').post( createAuction)
 router.route('/').get( getAuctions)
+router.route('/delete').delete( deleteAuctions)
 
 
 

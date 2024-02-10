@@ -76,7 +76,8 @@ export const getAuctions = ('/', asyncHandler(async (req, res)=>{
 export const deleteAuctions =
   ("/delete",
   asyncHandler(async (req, res) => {
-    const auction = await Auction.deleteMany({});
+    const auction = await Auction.deleteMany({createdAt: {
+													$gt: '2023-05-14T11:45:46.434Z'}});
     if (auction) {
       res.json({success: true, message:'Auction deleted successfully'});
     } else {

@@ -87,3 +87,35 @@ export const deleteAuctions =
       throw new Error("Auction Not Found...");
     }
   }));
+
+
+  export const deleteSingleAuction =
+  ("/delete/:id",
+  asyncHandler(async (req, res) => {
+    const product = await Auction.deleteOne({_id:req.params.id});
+    if (product) {
+      res.json({success: true, message:'Item deleted successfully'});
+    } else {
+      res.status(404);
+      throw new Error("Item Not Found...");
+    }
+  }));
+
+
+  export const auctionUpdate = ('/update/:id', asyncHandler(async(req, res) =>{
+    let {soldprice} = req.body.creds
+   // console.log(req.body)
+   soldprice= Number(soldprice)
+       const user= await Auction.findOneAndUpdate({_id:req.params.id}, {
+           "$set":{
+               'soldprice' : soldprice
+           }
+          } )
+      
+       if (user) {
+           res.json({success: true})
+       }else{
+           res.status(404)
+           throw new Error('Auction not found')
+       }
+   }))

@@ -7,7 +7,8 @@ export const createAuction= ('/add', asyncHandler(async (req, res)=>{
       playername,
       category,
       soldprice,
-      team
+      team,
+      season
     } = req.body;
     playername.trim()
     soldprice= Number(soldprice)
@@ -17,7 +18,8 @@ export const createAuction= ('/add', asyncHandler(async (req, res)=>{
       playername,
       category,
       soldprice,
-      team
+      team,
+      season
         
         
       })

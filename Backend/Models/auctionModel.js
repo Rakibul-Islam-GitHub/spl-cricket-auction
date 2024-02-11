@@ -25,6 +25,11 @@ const auctionSchema = mongoose.Schema(
       default: 0
 
     },
+    season: {
+      type: Number,
+      default: 1
+
+    },
    
     
   },

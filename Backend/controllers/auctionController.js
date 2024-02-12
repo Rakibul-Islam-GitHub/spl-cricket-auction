@@ -103,19 +103,37 @@ export const deleteAuctions =
 
 
   export const auctionUpdate = ('/update/:id', asyncHandler(async(req, res) =>{
-    let {soldprice} = req.body.creds
+    let {soldprice, team} = req.body.creds
    // console.log(req.body)
    soldprice= Number(soldprice)
-       const user= await Auction.findOneAndUpdate({_id:req.params.id}, {
-           "$set":{
-               'soldprice' : soldprice
-           }
-          } )
-      
-       if (user) {
-           res.json({success: true})
+       if (team) {
+        const user= await Auction.findOneAndUpdate({_id:req.params.id}, {
+          "$set":{
+              'soldprice' : soldprice,
+              'team' : team
+          }
+         } )
+         if (user) {
+          res.json({success: true})
+      }else{
+          res.status(404)
+          throw new Error('Auction not found')
+      }
        }else{
-           res.status(404)
-           throw new Error('Auction not found')
+        const user= await Auction.findOneAndUpdate({_id:req.params.id}, {
+          "$set":{
+              'soldprice' : soldprice
+          }
+         } )
+
+         if (user) {
+          res.json({success: true})
+      }else{
+          res.status(404)
+          throw new Error('Auction not found')
+      }
        }
+       
+      
+       
    }))

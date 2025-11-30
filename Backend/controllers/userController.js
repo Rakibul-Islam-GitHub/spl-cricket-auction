@@ -193,7 +193,7 @@ export const getApprovedUsers = ('/approvedusers', asyncHandler(async(req, res) 
     const users = await User.find({
   isAdmin: false,
   approved: true,
-  createdAt: { $lt: new Date('2025-12-01') } // Filtering users created before December 1, 2025
+  createdAt: { $gt: new Date('2025-12-01') } // Filtering users created before December 1, 2025
 }).select('-password');
    
     if (users) {
